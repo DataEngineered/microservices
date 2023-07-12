@@ -2,7 +2,7 @@ const Inquiry = require('../controllers/inquiry-controller');
 
 exports.getAmountSignatureByAmount = (req, res) => {
     const {va_number, signature} = req.params;
-    const {type, trx_uid, amount} = req.query;
+    const {type} = req.query;
 
     Inquiry.findByVASignature(va_number, (err, data) => {
         if(err){
@@ -35,14 +35,20 @@ exports.getAmountSignatureByAmount = (req, res) => {
 
                 res.send(inquiryData);
             } else if(type === "payment") {
+                const {trx_uid, amount} = req.query;
                 const vaNumber = data.va_number;
-                const amount = data.amount;
+                const totalAmount = data.amount;
                 const custName = data.cust_name;
+
+                if(!trx_uid || !amount){
+                    res.status(403).send({ message: 'Query is required', response_code: '01'});
+                    return;
+                }
 
                 const inquiryData = {
                     response: "VA Static Response",
                     va_number: vaNumber,
-                    amount: amount,
+                    amount: totalAmount,
                     cust_name: custName,
                     response_code: "00"
                 }

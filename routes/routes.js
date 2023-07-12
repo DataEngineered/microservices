@@ -5,7 +5,7 @@ const inquiryMiddlewares = require('../middlewares/inquiry-middlewares');
 const notificationMiddlewares = require('../middlewares/notification-middlewares');
 const radiusPPPOE = require('../middlewares/radius-pppoe-middleware');
 
-router.get('/inquiry/:va_number/:signature', inquiryMiddlewares.getAmountSignatureByAmount);
+router.get('/inquiry-test/:va_number/:signature', inquiryMiddlewares.getAmountSignatureByAmount);
 
 // Aktif & Isolir
 router.post('/notification', [
