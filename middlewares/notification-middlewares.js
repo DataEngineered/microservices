@@ -282,14 +282,17 @@ exports.updateStatusRadiusTest = async (req, res, next) => {
 
 exports.insertAccounting = async (req, res) => {
     try {
-        const {bill_no, payment_total, payment_date} = req.body;
+        const {
+            trx_id, merchant_id, merchant, payment_date, payment_status_desc, bill_no, payment_total, payment_status_code, bill_total,
+            payment_channel_uid, payment_channel, signature
+        } = req.body;
         CustomerSub.selectInsertIntoAccounting(bill_no, async (err, data) => {
             if(err){
                 res.send({'Error': err});
             }else{
                 const nama_cust = data.nama;
                 const scriptUrl = 'https://script.google.com/macros/s/AKfycbxCU0-4Zn0t7OePPA0_NomFl-dF3ezRTaRB3J-7yAp6tLK06-ssNDkvbBbZraUkoYx4/exec';
-                const response = await axios.post(scriptUrl, {bill_no, nama_cust, payment_total, payment_date});
+                const response = await axios.post(scriptUrl, {trx_id, merchant_id, merchant, bill_no, nama_cust, payment_total, payment_date});
 
                 const responseData = {
                     status: response.status,
@@ -308,14 +311,17 @@ exports.insertAccounting = async (req, res) => {
 
 exports.insertAccountingTest = async (req, res) => {
     try {
-        const {bill_no, payment_total, payment_date} = req.body;
+        const {
+            trx_id, merchant_id, merchant, payment_date, payment_status_desc, bill_no, payment_total, payment_status_code, bill_total,
+            payment_channel_uid, payment_channel, signature
+        } = req.body;
         CustomerSub.selectInsertIntoAccounting(bill_no, async (err, data) => {
             if(err){
                 res.send({'Error': err});
             }else{
                 const nama_cust = data.nama;
                 const scriptUrl = 'https://script.google.com/macros/s/AKfycbxCU0-4Zn0t7OePPA0_NomFl-dF3ezRTaRB3J-7yAp6tLK06-ssNDkvbBbZraUkoYx4/exec';
-                const response = await axios.post(scriptUrl, {bill_no, nama_cust, payment_total, payment_date});
+                const response = await axios.post(scriptUrl, {trx_id, merchant_id, merchant, bill_no, nama_cust, payment_total, payment_date});
 
                 const responseData = {
                     status: response.status,

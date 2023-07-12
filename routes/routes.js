@@ -20,7 +20,7 @@ router.post('/notification', notificationMiddlewares.insertAccounting);
 
 router.post('/add-pppoe', radiusPPPOE.createNewPPPoEAccount);
 
-router.post('/test', notificationMiddlewares.createPPPoEAccount);
+router.post('/test', notificationMiddlewares.insertAccountingTest);
 
 router.post('/input-test', [
     notificationMiddlewares.inputNotifsTest,
