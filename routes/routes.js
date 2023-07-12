@@ -8,7 +8,7 @@ const radiusPPPOE = require('../middlewares/radius-pppoe-middleware');
 router.get('/inquiry-test/:va_number/:signature', inquiryMiddlewares.getAmountSignatureByAmount);
 
 // Aktif & Isolir
-router.post('/notification', [
+router.post('/notifications', [
     notificationMiddlewares.inputNotifs,
     notificationMiddlewares.updateStatusCustomer,
     notificationMiddlewares.updateStatusRadius,
@@ -16,7 +16,7 @@ router.post('/notification', [
 ]);
 
 // Pra WO
-router.post('/notification', notificationMiddlewares.insertAccounting);
+router.post('/notifications', notificationMiddlewares.insertAccounting);
 
 router.post('/add-pppoe', radiusPPPOE.createNewPPPoEAccount);
 
