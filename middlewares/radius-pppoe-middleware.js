@@ -1,5 +1,5 @@
-// const clientRosRest = require('../services/radius-services');
-const clientRosRest = require('../services/radius-services-local');
+const clientRosRest = require('../services/radius-services');
+// const clientRosRest = require('../services/radius-services-local');
 
 exports.createNewPPPoEAccount = async (req, res) => {
     try {
