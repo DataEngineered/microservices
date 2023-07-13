@@ -55,19 +55,6 @@ INNER JOIN dasarata_payment.channels ch ON ch.id = dcva.chanel_id
 WHERE CONCAT(ch.id, dcva.id) = ?
 `;
 
-// const selectInsertAccounting = `
-// SELECT
-// dccp.nama AS nama,
-// dpn.pembayaran AS amount,
-// MAX(dphp.update_at) AS date
-// FROM dasarata_payment.notifications dpn
-// INNER JOIN dasarata_payment.history_paids dphp ON dpn.id = dphp.notifikasi_id
-// INNER JOIN dasarata_customer.customer_subscribes dccs ON dphp.customer_id = dccs.personal_id
-// INNER JOIN dasarata_customer.customer_personals dccp ON dccs.personal_id = dccp.id
-// INNER JOIN dasarata_customer.payment_bills dcpb ON dccp.id = dcpb.customer_personal_id
-// INNER JOIN dasarata_customer.va_customers dcva ON dcpb.va_customer_id = dcva.id
-// WHERE CONCAT(dcva.chanel_id,dcva.id) = ?`;
-
 const selectInsertAccounting = `SELECT
 dccp.nama AS nama
 FROM dasarata_customer.customer_subscribes dccs
@@ -201,7 +188,6 @@ CustomerSub.selectInsertIntoAccounting = (va, result) => {
 CustomerSub.insertIntoNotification = (newNotification, result) => {
     dbConfigPool.query(
         insertHistoryPaids,
-        // insertNotification,
         newNotification, (err, res) => {
         if(err){
             console.log("error: ", err);

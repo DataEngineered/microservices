@@ -17,16 +17,4 @@ router.post('/notifications', [
 // Pra WO
 router.post('/notifications', notificationMiddlewares.insertAccounting);
 
-router.post('/test', notificationMiddlewares.insertAccountingTest);
-
-router.post('/input-test', [
-    notificationMiddlewares.inputNotifsTest,
-    notificationMiddlewares.updateStatusCustomerTest,
-    notificationMiddlewares.updateStatusRadiusTest,
-    notificationMiddlewares.insertAccountingTest
-]);
-
-router.post('/input-test', notificationMiddlewares.insertAccountingTest);
-
-
 module.exports = router;
