@@ -3,7 +3,6 @@ const router = express.Router();
 
 const inquiryMiddlewares = require('../middlewares/inquiry-middlewares');
 const notificationMiddlewares = require('../middlewares/notification-middlewares');
-const radiusPPPOE = require('../middlewares/radius-pppoe-middleware');
 
 router.get('/inquiry-test/:va_number/:signature', inquiryMiddlewares.getAmountSignatureByAmount);
 
@@ -17,8 +16,6 @@ router.post('/notifications', [
 
 // Pra WO
 router.post('/notifications', notificationMiddlewares.insertAccounting);
-
-router.post('/add-pppoe', radiusPPPOE.createNewPPPoEAccount);
 
 router.post('/test', notificationMiddlewares.insertAccountingTest);
 
