@@ -121,7 +121,7 @@ exports.insertAccounting = async (req, res) => {
             }else{
                 const nama_cust = data.nama;
                 const scriptUrl = 'https://script.google.com/macros/s/AKfycbxCU0-4Zn0t7OePPA0_NomFl-dF3ezRTaRB3J-7yAp6tLK06-ssNDkvbBbZraUkoYx4/exec';
-                const response = await axios.post(scriptUrl, {trx_id, merchant_id, merchant, bill_no, nama_cust, payment_total, payment_date});
+                const response = await axios.post(scriptUrl, {trx_id, merchant_id, merchant, bill_no, nama_cust, bill_total, payment_date});
 
                 const responseData = {
                     status: response.status,
