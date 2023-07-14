@@ -1,4 +1,3 @@
-// const dbConfigPool = require('../services/db-services-local');
 const dbConfigPool = require('../services/db-services');
 
 const CustomerSub = function(customerSub){

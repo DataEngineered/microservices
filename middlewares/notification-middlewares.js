@@ -1,4 +1,3 @@
-// const clientRosRest = require('../services/radius-services-local');
 const clientRosRest = require('../services/radius-services');
 const axios = require('axios');
 const CustomerSub = require('../controllers/notification-controller');
@@ -110,11 +109,14 @@ exports.updateStatusRadius = async (req, res, next) => {
 exports.insertAccounting = async (req, res) => {
     try {
         const {
-            trx_id, merchant_id, merchant, payment_date, payment_status_desc, bill_no, payment_total, payment_status_code, bill_total,
+            trx_id, merchant_id, merchant, payment_date, payment_reff, payment_status_desc, bill_no, payment_total, payment_status_code, bill_total,
             payment_channel_uid, payment_channel, signature
         } = req.body;
+
+        const current_date = new Date();
         CustomerSub.selectInsertIntoAccounting(bill_no, async (err, data) => {
             if(err){
+                console.log(err);
                 res.send({'Error': err});
             }else{
                 const nama_cust = data.nama;
@@ -127,7 +129,19 @@ exports.insertAccounting = async (req, res) => {
                     data: response.data,
                 };
 
-                res.json(responseData);
+                const resData = {
+                    response: "Payment Notification",
+                    trx_id: trx_id,
+                    merchant_id: merchant_id,
+                    merchant: merchant,
+                    bill_no: bill_no,
+                    response_code: "00",
+                    response_desc: "Success",
+                    response_date: current_date
+                }
+
+                console.log(req.body);
+                res.send(resData);
             }
         })
 

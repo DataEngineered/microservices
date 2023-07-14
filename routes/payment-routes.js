@@ -17,4 +17,6 @@ router.post('/notifications', [
 // Pra WO
 router.post('/notifications', notificationMiddlewares.insertAccounting);
 
+router.post('/test', notificationMiddlewares.insertAccounting);
+
 module.exports = router;
